@@ -126,6 +126,8 @@ namespace AtlasCreator
 
         #endregion
 
+
+        PictureBox pic;
         /// <summary>
         /// Сам Динамический контрол. Возвращаемы метод который создаёт контрол с выбранным положением Image и размером
         /// </summary>
@@ -134,7 +136,7 @@ namespace AtlasCreator
         /// <returns>Готовый контрол</returns>
         public Control MyNewControls(int Layout, int SizeBox)
         {
-            PictureBox pic = new PictureBox();
+            pic = new PictureBox();
             pic.BorderStyle = BorderStyle.FixedSingle;
             pic.Location = new Point(10, 10);
             pic.Size = new Size(SizeBox, SizeBox);
@@ -161,27 +163,16 @@ namespace AtlasCreator
         {
             if (e.Button == MouseButtons.Right)
             {
+                Form1 f1 = new Form1();
                 ContextMenuStrip cms = new ContextMenuStrip();
-                cms.Items.Add("Удалить элемент");
-                cms.Items[0].Click += ManageSetting_Click;
-                cms.Show((sender as PictureBox), new Point(0 , 10));
+                cms.Items.Add("Удалить элемент " + (sender as PictureBox).Name);
+                cms.Enabled = false;
+                //TODO : Доработать вызов в новом потоке от формы base
+                cms.Items[0].Click += f1.DeleteControlInPanel;
+                cms.Show((sender as PictureBox), ((sender as PictureBox).PointToClient(Cursor.Position)));
             }
         }
 
-        /// <summary>
-        /// метод при клике на контекстное меню
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ManageSetting_Click(object sender, EventArgs e)
-        {
-            foreach (var panel in new Form1().Controls.OfType<Panel>())
-            {
-                MessageBox.Show(panel.Name);
-                foreach (var pb in panel.Controls.OfType<PictureBox>())
-                    MessageBox.Show(pb.Name);
-            }
-        }
 
         /// <summary>
         /// из ImageLayout в INTEGER
@@ -202,8 +193,25 @@ namespace AtlasCreator
                 Point p = new Point(); // New Coordinate
                 p.X = e.X + (sender as PictureBox).Left;
                 p.Y = e.Y + (sender as PictureBox).Top;
-                (sender as PictureBox).Left = p.X;
-                (sender as PictureBox).Top = p.Y;
+
+                #region Перетаскивает там где курсор
+                //TODO : Сделат перетаскивание за мышью
+                //(sender as PictureBox).Left =p.X + e.X - e.Location.X;
+                //(sender as PictureBox).Top = p.Y + e.Y - e.Location.Y;
+                #endregion
+
+
+                #region Перетаскивает за середину элемента
+                (sender as PictureBox).Left = p.X - ((sender as PictureBox).Width / 2);
+                (sender as PictureBox).Top = p.Y - ((sender as PictureBox).Height / 2);
+                #endregion
+
+
+                #region Перетаскивает за левый верний угол
+                //(sender as PictureBox).Left = p.X;
+                //(sender as PictureBox).Top = p.Y;
+                #endregion
+
                 Data.pX = p.X;
                 Data.pY = p.Y;
                 Data.AtlasTextureSize = (sender as PictureBox).Width;

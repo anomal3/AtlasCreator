@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -30,19 +31,54 @@ namespace AtlasCreator
 
             cbAtlasSize.SelectedValueChanged += (s, a) => { _AtlasSize = int.Parse(cbAtlasSize.SelectedItem.ToString()); CreateAtlasPicture(); };
             tsbAddPic.Click += TsbAddPic_Click;
+            tsbDeleteAllPic.Click += TsbDeleteAllPic_Click;
+            tsbDeleteOnePic.Click += TsbDeleteOnePic_Click;
+
             tmrRefresh.Start();
 
             #endregion
         }
 
+        private void TsbDeleteOnePic_Click(object sender, EventArgs e)
+        {
+            foreach (Control item in PanelPictureAtlas.Controls.OfType<Control>())
+            {
+                if (item.Name == "PicBox_" + (Data.IDControl - 1))
+                {
+                    PanelPictureAtlas.Controls.Remove(item);
+                    Data.IDControl--;
+                }
+            }
+            
+        }
+
+        private void TsbDeleteAllPic_Click(object sender, EventArgs e)
+        {
+            PanelPictureAtlas.Controls.Clear();
+            Data.IDControl = 0;
+        }
+
+        /// <summary>
+        /// Добавление Нового контрола
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TsbAddPic_Click(object sender, EventArgs e)
         {
             if (cbLayoutImgPic.SelectedIndex != -1)
-            PanelPictureAtlas.Controls.Add(new ManageSetting().MyNewControls(cbLayoutImgPic.SelectedIndex, ConvertSizeToAtlas(cbSizeBox.SelectedIndex)));
+            {
+                PanelPictureAtlas.Controls.Add(new ManageSetting().MyNewControls(cbLayoutImgPic.SelectedIndex, ConvertSizeToAtlas(cbSizeBox.SelectedIndex)));
 
-            Data.IDControl++;
+                Data.IDControl++;
+            }
+            else { MessageBox.Show("Сначала укажите параметры картинки и размер добавляемого элемента", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         }
 
+        /// <summary>
+        /// Конвертируем размер PicBox чтобы влезло в экран
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
         Int32 ConvertSizeToAtlas(int index)
         {
             Int32 i = 0;
@@ -83,7 +119,10 @@ namespace AtlasCreator
         private int _AtlasSize = 0;
         int m_PictureCount = 0;
         int m_step = 8;
+
         private ManageSetting @ManageSetting { get; set; } = new ManageSetting();
+
+
 
         private void CreateImage()
         {
@@ -91,7 +130,7 @@ namespace AtlasCreator
             {
                 using (Graphics g = Graphics.FromImage(bmp))
                 {
-                    
+
                     //g.DrawImage(pic1.Image, 0, 0, 2048, 2048);
                     //g.DrawImage(pic2.Image, 2048, 0, 2048, 2048);
                     //g.DrawImage(pic3.Image, 0, 2048, 2048, 2048);
@@ -101,6 +140,7 @@ namespace AtlasCreator
             }
         }
 
+        #region Старый метод создания массива контролов
         void CreateAtlasPicture()
         {
             int line = 4096 / _AtlasSize;
@@ -157,6 +197,7 @@ namespace AtlasCreator
             }
             
         }
+        #endregion
 
         private void bCreateAtlas_Click(object sender, EventArgs e)
         {
@@ -164,6 +205,11 @@ namespace AtlasCreator
             MessageBox.Show("Texture created!");
         }
 
+        /// <summary>
+        /// Обновление таймера
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tmrRefresh_Tick(object sender, EventArgs e)
         {
             grBoxControlSetting.Text = "Настройки контрола " + Data.NamePic;
@@ -172,5 +218,11 @@ namespace AtlasCreator
             tbSzPicH.Text = Data.AtlasTextureSize.ToString();
             tbSzPicW.Text = Data.AtlasTextureSize.ToString();
         }
+
+        public void DeleteControlInPanel(object sender, EventArgs e)
+        {
+            PanelPictureAtlas.Controls.Clear();
+        }
+
     }
 }
