@@ -39,6 +39,8 @@ namespace AtlasCreator
         {
             if (cbLayoutImgPic.SelectedIndex != -1)
             PanelPictureAtlas.Controls.Add(new ManageSetting().MyNewControls(cbLayoutImgPic.SelectedIndex, ConvertSizeToAtlas(cbSizeBox.SelectedIndex)));
+
+            Data.IDControl++;
         }
 
         Int32 ConvertSizeToAtlas(int index)
