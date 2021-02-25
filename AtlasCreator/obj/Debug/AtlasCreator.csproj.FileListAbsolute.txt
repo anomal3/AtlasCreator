@@ -1,0 +1,18 @@
+C:\Users\asdk_pc\source\repos\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.csprojAssemblyReference.cache
+C:\Users\asdk_pc\source\repos\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.Form1.resources
+C:\Users\asdk_pc\source\repos\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.Properties.Resources.resources
+C:\Users\asdk_pc\source\repos\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.csproj.GenerateResource.cache
+C:\Users\asdk_pc\source\repos\AtlasCreator\AtlasCreator\bin\Debug\AtlasCreator.exe.config
+C:\Users\asdk_pc\source\repos\AtlasCreator\AtlasCreator\bin\Debug\AtlasCreator.exe
+C:\Users\asdk_pc\source\repos\AtlasCreator\AtlasCreator\bin\Debug\AtlasCreator.pdb
+C:\Users\asdk_pc\source\repos\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.exe
+C:\Users\asdk_pc\source\repos\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.pdb
+D:\BlueBox_Rsync\Whisper of the dead\USERS\anomal3[Рома]\AtlasCreator\AtlasCreator\bin\Debug\AtlasCreator.exe.config
+D:\BlueBox_Rsync\Whisper of the dead\USERS\anomal3[Рома]\AtlasCreator\AtlasCreator\bin\Debug\AtlasCreator.exe
+D:\BlueBox_Rsync\Whisper of the dead\USERS\anomal3[Рома]\AtlasCreator\AtlasCreator\bin\Debug\AtlasCreator.pdb
+D:\BlueBox_Rsync\Whisper of the dead\USERS\anomal3[Рома]\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.csprojAssemblyReference.cache
+D:\BlueBox_Rsync\Whisper of the dead\USERS\anomal3[Рома]\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.Form1.resources
+D:\BlueBox_Rsync\Whisper of the dead\USERS\anomal3[Рома]\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.Properties.Resources.resources
+D:\BlueBox_Rsync\Whisper of the dead\USERS\anomal3[Рома]\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.csproj.GenerateResource.cache
+D:\BlueBox_Rsync\Whisper of the dead\USERS\anomal3[Рома]\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.exe
+D:\BlueBox_Rsync\Whisper of the dead\USERS\anomal3[Рома]\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.pdb
