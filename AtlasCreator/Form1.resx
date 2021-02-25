@@ -117,4 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="tsbAddPic.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMUSURBVFhHvZfbS5NhHMcfKCmtVMIDo8N9RIrayS40S9Cg
+        G6W7rqK/ITIP0y0hSui2mB0vwy60POHhwqigQk1p1ixXa6gtlilLLXV++33fzbm2FTV7/MKHl+fwPp+v
+        r4PtVZKNJmtba+bFTmRYO5Bh0Yw46KKTbhbYlmntROPgFK73e2Eb0AsddNFJNwukp1nacW9kBpkNQ9hx
+        dRg7NcGz6aCLTrpZIGN7XTs6x2aRf8uBgjujOHpXDzybDrropNsokGJuQ5/rO8ruuXCqSS900EVnqEBS
+        dRvWO3SGCmyuChSw2+14ZR+BfUQPxtniYOiMKuAYHcWbt+/g0IRxtjiYiAKtxqRzzAmn8wOc7zXBs8XB
+        0BlVwPXRBZfbrRdxMDELTIyPY3xiUit0MDELeDwefPJ81godTMwCU14vvN4vWqGD+bVAZaDAzPQ0vmqG
+        DobOUIFNwQKz33zw+fRCB0NnVIEf8/OYm9MLHUzMAv6lRSwsLMTF4sIilhaX5Ay/sByG35jnOvfRwcQs
+        AMgNfjngH1n2Lwfv/3MC+wJ7f1NgbbE2n0TJFYU8s8L+2sCVY85HRkuB7CqFAcfZKDgfGS0FcmsUHtvL
+        caNbheCY85HRUoCPvHu4ELZeFYJjzkdGS4FDdQoPh/ai8ZEKwTHnI5MY/nW8lgJ7zssHTh7xYfnQHbEo
+        NL00ofGpyINwzHmuc1/WhUCZpOqO1QKJwe+CeHLpQRkqmhVeeytxs1+kL+TRP1+FY85znfsaWsuN+5Kq
+        w36UJpvbjcl4c63rNGraFZ5NnIFtUMQDYciY81znvpWkmFefQHpGTYubJfgk+O/4W/izaktND5Jr+5FT
+        X4y6LoVedylswyIeEuTKMee5zn1bzT2G3GRt9a0USBGyhSLh+BooKapUA7U9Ci3ufbjtSDCuHBecU31c
+        D9t7TMgRUgWVILAE31LYKF52CweLLcpb16dwfzIVvAblecKu4L4VKKf7v4UvmplCfmm9mj5xWaGwQj2R
+        ca6QJmwQtId/kUk4IBQIWcK6yVfCEny8FPPt13gFjx2lfgJz+s1ybE5TDAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="tmrRefresh.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>117, 17</value>
+  </metadata>
 </root>

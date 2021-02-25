@@ -16,3 +16,13 @@ D:\BlueBox_Rsync\Whisper of the dead\USERS\anomal3[Рома]\AtlasCreator\AtlasC
 D:\BlueBox_Rsync\Whisper of the dead\USERS\anomal3[Рома]\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.csproj.GenerateResource.cache
 D:\BlueBox_Rsync\Whisper of the dead\USERS\anomal3[Рома]\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.exe
 D:\BlueBox_Rsync\Whisper of the dead\USERS\anomal3[Рома]\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.pdb
+D:\Github\AtlasCreator\AtlasCreator\bin\Debug\AtlasCreator.exe.config
+D:\Github\AtlasCreator\AtlasCreator\bin\Debug\AtlasCreator.exe
+D:\Github\AtlasCreator\AtlasCreator\bin\Debug\AtlasCreator.pdb
+D:\Github\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.csprojAssemblyReference.cache
+D:\Github\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.Form1.resources
+D:\Github\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.Properties.Resources.resources
+D:\Github\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.csproj.GenerateResource.cache
+D:\Github\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.csproj.CoreCompileInputs.cache
+D:\Github\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.exe
+D:\Github\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.pdb

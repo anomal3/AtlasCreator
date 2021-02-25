@@ -29,7 +29,53 @@ namespace AtlasCreator
             this.rbPicZoom.CheckedChanged += new System.EventHandler(@ManageSetting.RadioButtonCheaked);
 
             cbAtlasSize.SelectedValueChanged += (s, a) => { _AtlasSize = int.Parse(cbAtlasSize.SelectedItem.ToString()); CreateAtlasPicture(); };
+            tsbAddPic.Click += TsbAddPic_Click;
+            tmrRefresh.Start();
+
             #endregion
+        }
+
+        private void TsbAddPic_Click(object sender, EventArgs e)
+        {
+            if (cbLayoutImgPic.SelectedIndex != -1)
+            PanelPictureAtlas.Controls.Add(new ManageSetting().MyNewControls(cbLayoutImgPic.SelectedIndex, ConvertSizeToAtlas(cbSizeBox.SelectedIndex)));
+        }
+
+        Int32 ConvertSizeToAtlas(int index)
+        {
+            Int32 i = 0;
+            switch(index)
+            {
+                case 0:
+                    i = 420;
+                    Data.AtlasTextureSize = 2048;
+                    break;
+                case 1:
+                    i = 210;
+                    Data.AtlasTextureSize = 1024;
+                    break;
+                case 2:
+                    i = 100;
+                    Data.AtlasTextureSize = 512;
+                    break;
+                case 3:
+                    i = 50;
+                    Data.AtlasTextureSize = 256;
+                    break;
+                case 4:
+                    i = 25;
+                    Data.AtlasTextureSize = 128;
+                    break;
+                case 5:
+                    i = 18;
+                    Data.AtlasTextureSize = 64;
+                    break;
+                case 6:
+                    i = 10;
+                    Data.AtlasTextureSize = 32;
+                    break;
+            }
+            return i;
         }
 
         private int _AtlasSize = 0;
@@ -114,6 +160,15 @@ namespace AtlasCreator
         {
             CreateImage();
             MessageBox.Show("Texture created!");
+        }
+
+        private void tmrRefresh_Tick(object sender, EventArgs e)
+        {
+            grBoxControlSetting.Text = "Настройки контрола " + Data.NamePic;
+            tbPicLocX.Text = Data.pX.ToString();
+            tbPicLocY.Text = Data.pY.ToString();
+            tbSzPicH.Text = Data.AtlasTextureSize.ToString();
+            tbSzPicW.Text = Data.AtlasTextureSize.ToString();
         }
     }
 }
