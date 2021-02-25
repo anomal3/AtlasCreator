@@ -14,12 +14,11 @@
             {
                 using (Graphics g = Graphics.FromImage(bmp))
                 {
-
-                    //g.DrawImage(pic1.Image, 0, 0, 2048, 2048);
-                    //g.DrawImage(pic2.Image, 2048, 0, 2048, 2048);
-                    //g.DrawImage(pic3.Image, 0, 2048, 2048, 2048);
-                    //g.DrawImage(pic4.Image, 2048, 2048, 2048, 2048);
-                    //bmp.Save(@"test.png");
+                    g.DrawImage(pic1.Image, 0, 0, 2048, 2048);
+                    g.DrawImage(pic2.Image, 2048, 0, 2048, 2048);
+                    g.DrawImage(pic3.Image, 0, 2048, 2048, 2048);
+                    g.DrawImage(pic4.Image, 2048, 2048, 2048, 2048);
+                    bmp.Save(@"test.png");
                 }
             }
         }
