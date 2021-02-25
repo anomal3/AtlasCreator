@@ -132,9 +132,10 @@ namespace AtlasCreator
         /// <param name="Layout"></param>
         /// <param name="SizeBox"></param>
         /// <returns>Готовый контрол</returns>
+        PictureBox pic = new PictureBox();
         public Control MyNewControls(int Layout, int SizeBox)
         {
-            PictureBox pic = new PictureBox();
+            //PictureBox pic = new PictureBox();
             pic.BorderStyle = BorderStyle.FixedSingle;
             pic.Location = new Point(10, 10);
             pic.Size = new Size(SizeBox, SizeBox);
@@ -175,12 +176,16 @@ namespace AtlasCreator
         /// <param name="e"></param>
         private void ManageSetting_Click(object sender, EventArgs e)
         {
-            foreach (var panel in new Form1().Controls.OfType<Panel>())
-            {
-                MessageBox.Show(panel.Name);
-                foreach (var pb in panel.Controls.OfType<PictureBox>())
-                    MessageBox.Show(pb.Name);
-            }
+            pic.Controls.Remove(pic); //Реализовано удаление контрола
+            pic.Dispose();
+
+            // foreach (var panel in new Form1().Controls.OfType<Panel>())
+            // {
+            //     MessageBox.Show(panel.Name);
+            //     foreach (var pb in panel.Controls.OfType<PictureBox>())
+            //         MessageBox.Show(pb.Name);
+            // }
+
         }
 
         /// <summary>
