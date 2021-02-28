@@ -1,8 +1,10 @@
-﻿using System;
+﻿using AtlasCreator.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -29,14 +31,97 @@ namespace AtlasCreator
             this.rbPicStretch.CheckedChanged += new System.EventHandler(@ManageSetting.RadioButtonCheaked);
             this.rbPicZoom.CheckedChanged += new System.EventHandler(@ManageSetting.RadioButtonCheaked);
 
-            cbAtlasSize.SelectedValueChanged += (s, a) => { _AtlasSize = int.Parse(cbAtlasSize.SelectedItem.ToString()); CreateAtlasPicture(); };
+            //cbAtlasSize.SelectedValueChanged += (s, a) => { _AtlasSize = int.Parse(cbAtlasSize.SelectedItem.ToString()); CreateAtlasPicture();};
+
             tsbAddPic.Click += TsbAddPic_Click;
             tsbDeleteAllPic.Click += TsbDeleteAllPic_Click;
             tsbDeleteOnePic.Click += TsbDeleteOnePic_Click;
+            tsbAnchor.Click += TsbAnchor_Click;
 
             tmrRefresh.Start();
 
             #endregion
+        }
+
+
+        private void TsbAnchor_Click(object sender, EventArgs e)
+        {
+            int CountElements = PanelPictureAtlas.Controls.OfType<Control>().Count();
+            int WidthElements = 0;  //Ширина элементов
+            int HeightElements = 0; //высота элементов
+
+
+            for (int i = 0; i < PanelPictureAtlas.Controls.OfType<Control>().Count(); i++)
+            {
+                WidthElements += PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i).Width;
+
+                var CurrentElement = PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i); //текущий элемент
+
+                if (i != 0)
+                {
+                    if (WidthElements < PanelPictureAtlas.Size.Width) //Пока ширина всех элементов меньше размера панели то добавляем элементы в линию
+                    {
+                        var PreElement = PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i - 1); //Предыдущий элемент
+
+                        HeightElements = PreElement.Location.Y; 
+                        
+                        CurrentElement.Location = new Point(PreElement.Location.X + PreElement.Width, HeightElements);
+                        
+                    }
+                    else
+                    {
+                        WidthElements = CurrentElement.Width;
+                        HeightElements = PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i - 1).Location.Y + PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i - 1).Height;
+                        CurrentElement.Location = new Point(0, HeightElements);
+                    }
+                    
+                }
+                else
+                {
+                    PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i).Location = new Point(0, 0);
+                }
+
+                
+
+
+                #region Устаревший блок кода "Содержит ошибки"
+                //foreach (Control item in PanelPictureAtlas.Controls.OfType<Control>())
+                //{
+                //    WidthElements += item.Width;
+
+
+                //   if (item.Name == "PicBox_0" && item.Location != new Point(0, 0))
+                //    {
+                //        item.Location = new Point(0, 0);
+                //        PreLocationX = 0;
+                //        PreLocationY = 0;
+                //    }
+                //   else
+                //    {
+                //        //Проверяем сколько у нас есть ещё PicBox и ставим каждую к краю другой
+
+                //        //var PreElement = PanelPictureAtlas.Controls.OfType<Control>().ElementAt(Data.IDControl - 2);
+                //        //var curElement = PanelPictureAtlas.Controls.OfType<Control>().ElementAt(Data.IDControl - 1);
+
+                //        //if (PanelPictureAtlas.Size.Width > WidthElements)
+                //        //{
+                //        //    curElement.Location = new Point(PreElement.Location.X + PreElement.Width, HeightElements);
+                //        //}
+                //        //else
+                //        //{
+                //        //    HeightElements = PanelPictureAtlas.Controls.OfType<Control>().FirstOrDefault().Height;
+                //        //    curElement.Location = new Point(PanelPictureAtlas.Controls.OfType<Control>().FirstOrDefault().Location.X, HeightElements);
+                //        //}
+                //        //item.Location = new Point(PreElement.Location.X + PreElement.Width, PreElement.Location.Y + PreElement.Height);
+                //        //}
+                //    }
+                //if (item.Name == "PicBox_" + (Data.IDControl - 1))
+                //{
+
+                //}
+                #endregion
+            }
+            
         }
 
         private void TsbDeleteOnePic_Click(object sender, EventArgs e)
@@ -54,6 +139,7 @@ namespace AtlasCreator
 
         private void TsbDeleteAllPic_Click(object sender, EventArgs e)
         {
+            cbSizeBox.Enabled = true;
             PanelPictureAtlas.Controls.Clear();
             Data.IDControl = 0;
         }
@@ -65,13 +151,25 @@ namespace AtlasCreator
         /// <param name="e"></param>
         private void TsbAddPic_Click(object sender, EventArgs e)
         {
+           
+
             if (cbLayoutImgPic.SelectedIndex != -1)
             {
-                PanelPictureAtlas.Controls.Add(new ManageSetting().MyNewControls(cbLayoutImgPic.SelectedIndex, ConvertSizeToAtlas(cbSizeBox.SelectedIndex)));
+                cbSizeBox.Enabled = false;
+                if (PanelPictureAtlas.Controls.OfType<Control>().Count() == 0)
+                {
+                    PanelPictureAtlas.Controls.Add(new ManageSetting().MyNewControls(cbLayoutImgPic.SelectedIndex, ConvertSizeToAtlas(cbSizeBox.SelectedIndex), 10, 10));
+                }
+
+                else
+                {
+                    PanelPictureAtlas.Controls.Add(new ManageSetting().MyNewControls(cbLayoutImgPic.SelectedIndex, ConvertSizeToAtlas(cbSizeBox.SelectedIndex), +10, +10));
+                    //TODO : Сделать добавление координат новых текстур со сдвигом в +10 от предыдущего
+                }
 
                 Data.IDControl++;
             }
-            else { MessageBox.Show("Сначала укажите параметры картинки и размер добавляемого элемента", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            else { MessageBox.Show("Сначала укажите положение текстуры и размер текстур", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         }
 
         /// <summary>
@@ -113,6 +211,7 @@ namespace AtlasCreator
                     Data.AtlasTextureSize = 32;
                     break;
             }
+            Data.NevelirSeizeKostil = Data.AtlasTextureSize - i;
             return i;
         }
 
@@ -126,16 +225,34 @@ namespace AtlasCreator
 
         private void CreateImage()
         {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "PNG Image|*.png";
+            saveFileDialog1.Title = "Укажите название файла";
+            saveFileDialog1.ShowDialog();
             using (Bitmap bmp = new Bitmap(4096, 4096))
             {
                 using (Graphics g = Graphics.FromImage(bmp))
                 {
+                    //узнаём сколько элементов и подставляем значения
+                    for (int i = 0; i < PanelPictureAtlas.Controls.OfType<Control>().Count(); i++)
+                    {
 
-                    //g.DrawImage(pic1.Image, 0, 0, 2048, 2048);
-                    //g.DrawImage(pic2.Image, 2048, 0, 2048, 2048);
-                    //g.DrawImage(pic3.Image, 0, 2048, 2048, 2048);
-                    //g.DrawImage(pic4.Image, 2048, 2048, 2048, 2048);
-                    //bmp.Save(@"test.png");
+                        var CurrentElement = PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i);
+                        int LocX = 0;
+                        int LocY = 0;
+
+                        if (CurrentElement.Location.X != 0) LocX = CurrentElement.Location.X + Data.NevelirSeizeKostil;
+                        else LocX = CurrentElement.Location.X;
+
+                        if (CurrentElement.Location.Y != 0) LocY = CurrentElement.Location.Y + Data.NevelirSeizeKostil;
+                        else LocY = CurrentElement.Location.Y;
+
+                        g.DrawImage(CurrentElement.BackgroundImage, LocX, LocY, Data.AtlasTextureSize, Data.AtlasTextureSize);
+                    }
+
+                    System.IO.FileStream fs = (FileStream)saveFileDialog1.OpenFile();
+                    fs.Close();
+                    bmp.Save(fs.Name);
                 }
             }
         }
@@ -222,6 +339,19 @@ namespace AtlasCreator
         public void DeleteControlInPanel(object sender, EventArgs e)
         {
             PanelPictureAtlas.Controls.Clear();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.Text = "Texture atlas creator v" + Assembly.GetExecutingAssembly().GetName().Version;
+            #region Создадим свою кнопку на ToolStrip
+            Button button = new Button();
+            button.Text = "Создать атлас";
+            button.Click += bCreateAtlas_Click;
+            button.Image= Resources.image_instagram; button.ImageAlign = ContentAlignment.MiddleLeft;
+            button.TextAlign = ContentAlignment.MiddleRight; button.TextImageRelation = TextImageRelation.ImageBeforeText;
+            toolStrip1.Items.Add(new ToolStripControlHost(button));
+            #endregion
         }
 
     }

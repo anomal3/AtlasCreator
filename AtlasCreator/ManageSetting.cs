@@ -21,6 +21,8 @@ namespace AtlasCreator
 
         public static int AtlasTextureSize { get; set; }
 
+        public static int NevelirSeizeKostil { get; set; }
+
     }
     public  class ManageSetting
     {
@@ -54,26 +56,7 @@ namespace AtlasCreator
         }
 
 
-        /// <summary>
-        /// Метод создания 4К текстуры
-        /// </summary>
-        /// <param name="AtlasSize"></param>
-        /// <param name="PicImgSize"></param>
-        private void CreateImage4k(int AtlasSize, int PicImgSize)
-        {
-            using (Bitmap bmp = new Bitmap(AtlasSize, AtlasSize))
-            {
-                using (Graphics g = Graphics.FromImage(bmp))
-                {
-                    //TODO : доделать входные параметры, а так же доделать метод до реализации
-                    //g.DrawImage(pic1.Image, 0, 0, 2048, 2048);
-                    //g.DrawImage(pic2.Image, 2048, 0, 2048, 2048);
-                    //g.DrawImage(pic3.Image, 0, 2048, 2048, 2048);
-                    //g.DrawImage(pic4.Image, 2048, 2048, 2048, 2048);
-                    //bmp.Save(@"test.png");
-                }
-            }
-        }
+
 
         #region Устаревший метод который искал на Form1 все контролы PicBox и выполнял действия
         void PictureBoxImageLayout(ImageLayout layout)
@@ -134,11 +117,11 @@ namespace AtlasCreator
         /// <param name="Layout"></param>
         /// <param name="SizeBox"></param>
         /// <returns>Готовый контрол</returns>
-        public Control MyNewControls(int Layout, int SizeBox)
+        public Control MyNewControls(int Layout, int SizeBox, int PointX, int PointY)
         {
             pic = new PictureBox();
             pic.BorderStyle = BorderStyle.FixedSingle;
-            pic.Location = new Point(10, 10);
+            pic.Location = new Point(PointX, PointY);
             pic.Size = new Size(SizeBox, SizeBox);
             pic.BackgroundImage = Resources.NoTexture;
             pic.Name = "PicBox_" + Data.IDControl;
@@ -166,11 +149,19 @@ namespace AtlasCreator
                 Form1 f1 = new Form1();
                 ContextMenuStrip cms = new ContextMenuStrip();
                 cms.Items.Add("Удалить элемент " + (sender as PictureBox).Name);
+                cms.Items.Add("Выровнять элемент " + (sender as PictureBox).Name);
                 cms.Enabled = false;
                 //TODO : Доработать вызов в новом потоке от формы base
                 cms.Items[0].Click += f1.DeleteControlInPanel;
+                cms.Items[1].Click += ManageSetting_Click;
+
                 cms.Show((sender as PictureBox), ((sender as PictureBox).PointToClient(Cursor.Position)));
             }
+        }
+
+        private void ManageSetting_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
 
@@ -214,7 +205,7 @@ namespace AtlasCreator
 
                 Data.pX = p.X;
                 Data.pY = p.Y;
-                Data.AtlasTextureSize = (sender as PictureBox).Width;
+               // Data.AtlasTextureSize = (sender as PictureBox).Width;
                 Data.NamePic = (sender as PictureBox).Name;
             }
         }

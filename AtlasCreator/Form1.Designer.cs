@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.bCreateAtlas = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbPicZoom = new System.Windows.Forms.RadioButton();
             this.rbPicStretch = new System.Windows.Forms.RadioButton();
@@ -38,11 +37,12 @@
             this.rbPicTile = new System.Windows.Forms.RadioButton();
             this.rbPicNone = new System.Windows.Forms.RadioButton();
             this.PanelPictureAtlas = new System.Windows.Forms.Panel();
-            this.cbAtlasSize = new System.Windows.Forms.ComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbAddPic = new System.Windows.Forms.ToolStripButton();
             this.tsbDeleteOnePic = new System.Windows.Forms.ToolStripButton();
             this.tsbDeleteAllPic = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbAnchor = new System.Windows.Forms.ToolStripButton();
             this.cbLayoutImgPic = new System.Windows.Forms.ComboBox();
             this.grBoxControlSetting = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -57,21 +57,12 @@
             this.tbPicLocX = new System.Windows.Forms.TextBox();
             this.tmrRefresh = new System.Windows.Forms.Timer(this.components);
             this.cbSizeBox = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.grBoxControlSetting.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // bCreateAtlas
-            // 
-            this.bCreateAtlas.Location = new System.Drawing.Point(1080, 32);
-            this.bCreateAtlas.Name = "bCreateAtlas";
-            this.bCreateAtlas.Size = new System.Drawing.Size(261, 33);
-            this.bCreateAtlas.TabIndex = 1;
-            this.bCreateAtlas.Text = "Create_Atlas";
-            this.bCreateAtlas.UseVisualStyleBackColor = true;
-            this.bCreateAtlas.Click += new System.EventHandler(this.bCreateAtlas_Click);
             // 
             // groupBox1
             // 
@@ -80,7 +71,7 @@
             this.groupBox1.Controls.Add(this.rbPicCenter);
             this.groupBox1.Controls.Add(this.rbPicTile);
             this.groupBox1.Controls.Add(this.rbPicNone);
-            this.groupBox1.Location = new System.Drawing.Point(873, 28);
+            this.groupBox1.Location = new System.Drawing.Point(872, 226);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(201, 154);
             this.groupBox1.TabIndex = 2;
@@ -150,34 +141,22 @@
             // PanelPictureAtlas
             // 
             this.PanelPictureAtlas.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.PanelPictureAtlas.Location = new System.Drawing.Point(0, 28);
+            this.PanelPictureAtlas.Location = new System.Drawing.Point(0, 34);
             this.PanelPictureAtlas.Name = "PanelPictureAtlas";
             this.PanelPictureAtlas.Size = new System.Drawing.Size(860, 860);
             this.PanelPictureAtlas.TabIndex = 3;
-            // 
-            // cbAtlasSize
-            // 
-            this.cbAtlasSize.DropDownWidth = 150;
-            this.cbAtlasSize.FormattingEnabled = true;
-            this.cbAtlasSize.Items.AddRange(new object[] {
-            "2048",
-            "1024",
-            "512",
-            "256"});
-            this.cbAtlasSize.Location = new System.Drawing.Point(1080, 90);
-            this.cbAtlasSize.Name = "cbAtlasSize";
-            this.cbAtlasSize.Size = new System.Drawing.Size(169, 21);
-            this.cbAtlasSize.TabIndex = 4;
             // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbAddPic,
             this.tsbDeleteOnePic,
-            this.tsbDeleteAllPic});
+            this.tsbDeleteAllPic,
+            this.toolStripSeparator1,
+            this.tsbAnchor});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1384, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1259, 25);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -211,6 +190,23 @@
             this.tsbDeleteAllPic.Text = "toolStripButton2";
             this.tsbDeleteAllPic.ToolTipText = "Удалить все элементы";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbAnchor
+            // 
+            this.tsbAnchor.AutoSize = false;
+            this.tsbAnchor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbAnchor.Image = ((System.Drawing.Image)(resources.GetObject("tsbAnchor.Image")));
+            this.tsbAnchor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAnchor.Name = "tsbAnchor";
+            this.tsbAnchor.RightToLeftAutoMirrorImage = true;
+            this.tsbAnchor.Size = new System.Drawing.Size(23, 22);
+            this.tsbAnchor.Text = "toolStripButton1";
+            this.tsbAnchor.ToolTipText = "Выровнять все элементы \r\nпо отношению к последнему";
+            // 
             // cbLayoutImgPic
             // 
             this.cbLayoutImgPic.FormattingEnabled = true;
@@ -220,7 +216,7 @@
             "Центрировать",
             "Растянуть",
             "Zoom"});
-            this.cbLayoutImgPic.Location = new System.Drawing.Point(873, 188);
+            this.cbLayoutImgPic.Location = new System.Drawing.Point(869, 69);
             this.cbLayoutImgPic.Name = "cbLayoutImgPic";
             this.cbLayoutImgPic.Size = new System.Drawing.Size(201, 21);
             this.cbLayoutImgPic.TabIndex = 6;
@@ -237,9 +233,9 @@
             this.grBoxControlSetting.Controls.Add(this.tbPicLocY);
             this.grBoxControlSetting.Controls.Add(this.tbSzPicH);
             this.grBoxControlSetting.Controls.Add(this.tbPicLocX);
-            this.grBoxControlSetting.Location = new System.Drawing.Point(873, 233);
+            this.grBoxControlSetting.Location = new System.Drawing.Point(869, 96);
             this.grBoxControlSetting.Name = "grBoxControlSetting";
-            this.grBoxControlSetting.Size = new System.Drawing.Size(499, 181);
+            this.grBoxControlSetting.Size = new System.Drawing.Size(360, 115);
             this.grBoxControlSetting.TabIndex = 7;
             this.grBoxControlSetting.TabStop = false;
             this.grBoxControlSetting.Text = "Настройки контрола";
@@ -342,36 +338,48 @@
             "128",
             "64",
             "32"});
-            this.cbSizeBox.Location = new System.Drawing.Point(1208, 188);
+            this.cbSizeBox.Location = new System.Drawing.Point(1096, 69);
             this.cbSizeBox.Name = "cbSizeBox";
             this.cbSizeBox.Size = new System.Drawing.Size(133, 21);
             this.cbSizeBox.TabIndex = 8;
             // 
-            // button1
+            // label7
             // 
-            this.button1.Location = new System.Drawing.Point(882, 436);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(866, 53);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(161, 13);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Положение текущей текстуры";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1093, 53);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(88, 13);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Размер текстур";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1384, 906);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1259, 906);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.cbSizeBox);
             this.Controls.Add(this.grBoxControlSetting);
             this.Controls.Add(this.cbLayoutImgPic);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.cbAtlasSize);
             this.Controls.Add(this.PanelPictureAtlas);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.bCreateAtlas);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1275, 945);
+            this.MinimumSize = new System.Drawing.Size(1275, 945);
             this.Name = "Form1";
             this.Text = "Texture atlas creator";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
@@ -384,14 +392,12 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button bCreateAtlas;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton rbPicZoom;
         private System.Windows.Forms.RadioButton rbPicStretch;
         private System.Windows.Forms.RadioButton rbPicCenter;
         private System.Windows.Forms.RadioButton rbPicTile;
         private System.Windows.Forms.RadioButton rbPicNone;
-        private System.Windows.Forms.ComboBox cbAtlasSize;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsbAddPic;
         private System.Windows.Forms.ComboBox cbLayoutImgPic;
@@ -409,9 +415,12 @@
         private System.Windows.Forms.Timer tmrRefresh;
         private System.Windows.Forms.ComboBox cbSizeBox;
         public System.Windows.Forms.Panel PanelPictureAtlas;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripButton tsbDeleteOnePic;
         private System.Windows.Forms.ToolStripButton tsbDeleteAllPic;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton tsbAnchor;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
 

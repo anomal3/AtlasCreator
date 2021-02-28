@@ -1,0 +1,9 @@
+F:\Github\AtlasCreator\AtlasCreator\bin\Release\AtlasCreator.exe.config
+F:\Github\AtlasCreator\AtlasCreator\bin\Release\AtlasCreator.exe
+F:\Github\AtlasCreator\AtlasCreator\bin\Release\AtlasCreator.pdb
+F:\Github\AtlasCreator\AtlasCreator\obj\Release\AtlasCreator.csprojAssemblyReference.cache
+F:\Github\AtlasCreator\AtlasCreator\obj\Release\AtlasCreator.Form1.resources
+F:\Github\AtlasCreator\AtlasCreator\obj\Release\AtlasCreator.Properties.Resources.resources
+F:\Github\AtlasCreator\AtlasCreator\obj\Release\AtlasCreator.csproj.GenerateResource.cache
+F:\Github\AtlasCreator\AtlasCreator\obj\Release\AtlasCreator.exe
+F:\Github\AtlasCreator\AtlasCreator\obj\Release\AtlasCreator.pdb

@@ -45,3 +45,12 @@ C:\Users\а\Documents\GitHub\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.cs
 C:\Users\а\Documents\GitHub\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.csproj.CoreCompileInputs.cache
 C:\Users\а\Documents\GitHub\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.exe
 C:\Users\а\Documents\GitHub\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.pdb
+F:\Github\AtlasCreator\AtlasCreator\bin\Debug\AtlasCreator.exe.config
+F:\Github\AtlasCreator\AtlasCreator\bin\Debug\AtlasCreator.exe
+F:\Github\AtlasCreator\AtlasCreator\bin\Debug\AtlasCreator.pdb
+F:\Github\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.csprojAssemblyReference.cache
+F:\Github\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.Form1.resources
+F:\Github\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.Properties.Resources.resources
+F:\Github\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.csproj.GenerateResource.cache
+F:\Github\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.exe
+F:\Github\AtlasCreator\AtlasCreator\obj\Debug\AtlasCreator.pdb
