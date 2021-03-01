@@ -66,11 +66,12 @@ namespace AtlasCreator
                         HeightElements = PreElement.Location.Y; 
                         
                         CurrentElement.Location = new Point(PreElement.Location.X + PreElement.Width, HeightElements);
-                        
+
                     }
                     else
                     {
                         WidthElements = CurrentElement.Width;
+
                         HeightElements = PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i - 1).Location.Y + PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i - 1).Height;
                         CurrentElement.Location = new Point(0, HeightElements);
                     }
@@ -185,33 +186,46 @@ namespace AtlasCreator
                 case 0:
                     i = 420;
                     Data.AtlasTextureSize = 2048;
+                    Data.NevelirSeizeKostil = Data.AtlasTextureSize - i;
+                    Data.LimitTextures = 4096 / 2048;
                     break;
                 case 1:
                     i = 210;
                     Data.AtlasTextureSize = 1024;
+                    Data.NevelirSeizeKostil = Data.AtlasTextureSize - i;
+                    Data.LimitTextures = 4096 / 1024;
                     break;
                 case 2:
                     i = 100;
                     Data.AtlasTextureSize = 512;
+                    Data.NevelirSeizeKostil = Data.AtlasTextureSize - i;
+                    Data.LimitTextures = 4096 / 512;
                     break;
                 case 3:
                     i = 50;
                     Data.AtlasTextureSize = 256;
+                    Data.NevelirSeizeKostil = Data.AtlasTextureSize - i;
+                    Data.LimitTextures = 4096 / 256;
                     break;
                 case 4:
                     i = 25;
                     Data.AtlasTextureSize = 128;
+                    Data.NevelirSeizeKostil = Data.AtlasTextureSize - i;
+                    Data.LimitTextures = 4096 / 128;
                     break;
                 case 5:
                     i = 18;
                     Data.AtlasTextureSize = 64;
+                    Data.NevelirSeizeKostil = Data.AtlasTextureSize - i;
+                    Data.LimitTextures = 4096 / 64;
                     break;
                 case 6:
                     i = 10;
                     Data.AtlasTextureSize = 32;
+                    Data.NevelirSeizeKostil = Data.AtlasTextureSize - i;
+                    Data.LimitTextures = 4096 / 32;
                     break;
             }
-            Data.NevelirSeizeKostil = Data.AtlasTextureSize - i;
             return i;
         }
 
@@ -222,7 +236,7 @@ namespace AtlasCreator
         private ManageSetting @ManageSetting { get; set; } = new ManageSetting();
 
 
-
+        int j = 0;
         private void CreateImage()
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -236,18 +250,20 @@ namespace AtlasCreator
                     //узнаём сколько элементов и подставляем значения
                     for (int i = 0; i < PanelPictureAtlas.Controls.OfType<Control>().Count(); i++)
                     {
-
-                        var CurrentElement = PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i);
+                        //TODO : Сделать правильный подсчёт для текстур в 1к и менее
+                        var CurrentsElement = PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i);
                         int LocX = 0;
                         int LocY = 0;
 
-                        if (CurrentElement.Location.X != 0) LocX = CurrentElement.Location.X + Data.NevelirSeizeKostil;
-                        else LocX = CurrentElement.Location.X;
 
-                        if (CurrentElement.Location.Y != 0) LocY = CurrentElement.Location.Y + Data.NevelirSeizeKostil;
-                        else LocY = CurrentElement.Location.Y;
+                        if (CurrentsElement.Location.X != 0) LocX = CurrentsElement.Location.X + (Data.NevelirSeizeKostil * j);
+                        else LocX = CurrentsElement.Location.X;
 
-                        g.DrawImage(CurrentElement.BackgroundImage, LocX, LocY, Data.AtlasTextureSize, Data.AtlasTextureSize);
+                        if (CurrentsElement.Location.Y != 0) { LocY = CurrentsElement.Location.Y + Data.NevelirSeizeKostil; }
+                        else LocY = CurrentsElement.Location.Y;
+
+                        g.DrawImage(CurrentsElement.BackgroundImage, LocX, LocY, Data.AtlasTextureSize, Data.AtlasTextureSize);
+
                     }
 
                     System.IO.FileStream fs = (FileStream)saveFileDialog1.OpenFile();

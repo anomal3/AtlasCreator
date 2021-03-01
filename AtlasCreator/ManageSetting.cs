@@ -21,7 +21,10 @@ namespace AtlasCreator
 
         public static int AtlasTextureSize { get; set; }
 
+        public static int LimitTextures { get; set; }
+
         public static int NevelirSeizeKostil { get; set; }
+        public static int NevelirSeizeKostilAtlas { get; set; }
 
     }
     public  class ManageSetting
