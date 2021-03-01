@@ -206,8 +206,8 @@ namespace AtlasCreator
                 //(sender as PictureBox).Top = p.Y;
                 #endregion
 
-                Data.pX = p.X;
-                Data.pY = p.Y;
+                Data.pX = p.X - ((sender as PictureBox).Width / 2);
+                Data.pY = p.Y - ((sender as PictureBox).Height / 2);
                // Data.AtlasTextureSize = (sender as PictureBox).Width;
                 Data.NamePic = (sender as PictureBox).Name;
             }

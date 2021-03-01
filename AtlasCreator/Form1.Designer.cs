@@ -59,6 +59,7 @@
             this.cbSizeBox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.lCountTexture = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.grBoxControlSetting.SuspendLayout();
@@ -361,11 +362,21 @@
             this.label8.TabIndex = 9;
             this.label8.Text = "Размер текстур";
             // 
+            // lCountTexture
+            // 
+            this.lCountTexture.AutoSize = true;
+            this.lCountTexture.Location = new System.Drawing.Point(869, 383);
+            this.lCountTexture.Name = "lCountTexture";
+            this.lCountTexture.Size = new System.Drawing.Size(193, 13);
+            this.lCountTexture.TabIndex = 10;
+            this.lCountTexture.Text = "Количество добавленных текстур : 0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1259, 906);
+            this.Controls.Add(this.lCountTexture);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cbSizeBox);
@@ -421,6 +432,7 @@
         private System.Windows.Forms.ToolStripButton tsbAnchor;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lCountTexture;
     }
 }
 

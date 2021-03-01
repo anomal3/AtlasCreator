@@ -44,6 +44,8 @@ namespace AtlasCreator
         }
 
 
+        private int CountTexture = 0;
+
         private void TsbAnchor_Click(object sender, EventArgs e)
         {
             int CountElements = PanelPictureAtlas.Controls.OfType<Control>().Count();
@@ -127,6 +129,7 @@ namespace AtlasCreator
 
         private void TsbDeleteOnePic_Click(object sender, EventArgs e)
         {
+            CountTexture--;
             foreach (Control item in PanelPictureAtlas.Controls.OfType<Control>())
             {
                 if (item.Name == "PicBox_" + (Data.IDControl - 1))
@@ -140,6 +143,7 @@ namespace AtlasCreator
 
         private void TsbDeleteAllPic_Click(object sender, EventArgs e)
         {
+            CountTexture = 0;
             cbSizeBox.Enabled = true;
             PanelPictureAtlas.Controls.Clear();
             Data.IDControl = 0;
@@ -152,7 +156,7 @@ namespace AtlasCreator
         /// <param name="e"></param>
         private void TsbAddPic_Click(object sender, EventArgs e)
         {
-           
+            CountTexture++;
 
             if (cbLayoutImgPic.SelectedIndex != -1)
             {
@@ -236,39 +240,70 @@ namespace AtlasCreator
         private ManageSetting @ManageSetting { get; set; } = new ManageSetting();
 
 
-        int j = 0;
+      
         private void CreateImage()
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Filter = "PNG Image|*.png";
             saveFileDialog1.Title = "Укажите название файла";
             saveFileDialog1.ShowDialog();
+            int j = 0;
+            int k = 0;
+
+            int WidthElements = 0;
+
             using (Bitmap bmp = new Bitmap(4096, 4096))
             {
                 using (Graphics g = Graphics.FromImage(bmp))
                 {
+                    int LocX = 0;
+                    int LocY = 0;
                     //узнаём сколько элементов и подставляем значения
                     for (int i = 0; i < PanelPictureAtlas.Controls.OfType<Control>().Count(); i++)
                     {
+                        WidthElements += (PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i).Width + Data.NevelirSeizeKostil);
                         //TODO : Сделать правильный подсчёт для текстур в 1к и менее
                         var CurrentsElement = PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i);
-                        int LocX = 0;
-                        int LocY = 0;
+                        var PresElement = PanelPictureAtlas.Controls.OfType<Control>().ElementAt(Data.IDControl - 2);
 
+                       
 
-                        if (CurrentsElement.Location.X != 0) LocX = CurrentsElement.Location.X + (Data.NevelirSeizeKostil * j);
-                        else LocX = CurrentsElement.Location.X;
+                        if (WidthElements <= 4096)
+                        {
+                            if (CurrentsElement.Location.X != 0) LocX = CurrentsElement.Location.X + (Data.NevelirSeizeKostil * j);
+                            else LocX = CurrentsElement.Location.X;
 
-                        if (CurrentsElement.Location.Y != 0) { LocY = CurrentsElement.Location.Y + Data.NevelirSeizeKostil; }
-                        else LocY = CurrentsElement.Location.Y;
+                            if (CurrentsElement.Location.Y == 0) LocY = 0; //тут ставим в позицию 0
 
+                            j++;
+                            
+                        }
+
+                        else {
+                           
+                            k += 1;
+                           
+                            WidthElements = (PanelPictureAtlas.Controls.OfType<Control>().ElementAt(i).Width + Data.NevelirSeizeKostil);
+
+                            LocX = CurrentsElement.Location.X;
+                            
+                            LocY = (PresElement.Height + Data.NevelirSeizeKostil) * k;
+                            
+                            j = 1;
+                        }
+                       
                         g.DrawImage(CurrentsElement.BackgroundImage, LocX, LocY, Data.AtlasTextureSize, Data.AtlasTextureSize);
 
                     }
 
-                    System.IO.FileStream fs = (FileStream)saveFileDialog1.OpenFile();
-                    fs.Close();
-                    bmp.Save(fs.Name);
+                    try
+                    {
+                        System.IO.FileStream fs = (FileStream)saveFileDialog1.OpenFile();
+                        fs.Close();
+                        bmp.Save(fs.Name);
+                        MessageBox.Show("Texture created!");
+                    }
+                    catch { }
                 }
             }
         }
@@ -335,7 +370,6 @@ namespace AtlasCreator
         private void bCreateAtlas_Click(object sender, EventArgs e)
         {
             CreateImage();
-            MessageBox.Show("Texture created!");
         }
 
         /// <summary>
@@ -345,6 +379,7 @@ namespace AtlasCreator
         /// <param name="e"></param>
         private void tmrRefresh_Tick(object sender, EventArgs e)
         {
+            lCountTexture.Text = $"Количество добавленных текстур : {CountTexture}";
             grBoxControlSetting.Text = "Настройки контрола " + Data.NamePic;
             tbPicLocX.Text = Data.pX.ToString();
             tbPicLocY.Text = Data.pY.ToString();
